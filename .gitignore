@@ -1,0 +1,30 @@
+# Stack
+.stack-work/
+stack.yaml.lock
+
+# GHCup
+ghcup/
+
+# Haskell build artifacts
+dist/
+cabal.project.local
+cabal.project.local~
+
+# Compiled Haskell modules
+*.hi
+*.o
+
+# Local Hoogle database
+.hoogle/
+
+# HLint cache
+.hlint.cache
+
+# macOS
+.DS_Store
+
+# Stack executable
+.stack-work/install/
+
+# GHCup binaries
+ghcup-bin/

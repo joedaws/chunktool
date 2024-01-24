@@ -1,6 +1,6 @@
-# string-tool
+# atool
 
-A command line interface (cli) for interacting with strings
+A command line interface (cli) for performing tedious tasks you may not want to do manually.
 
 ## Updates to make
 

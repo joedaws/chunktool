@@ -3,17 +3,19 @@ module Lib
       chunks
     ) where
 
+import Control.Monad
 import System.IO
 
 -- Each component of a thread has at most 280 characters
 threadify :: String -> IO ()
-threadify fileName = do
-    withFile fileName ReadMode (\handle ->
-        do
-            contents <- hGetContents handle
-            let w = words contents
-            let c = map unwords $ chunks w [] [] 280
-            putStr $ show c)
+threadify inputString = do
+  let w = words inputString
+  let c = map unwords $ chunks w [] [] 280
+  printThreads c
+
+printThreads :: [String] -> IO()
+printThreads cs = do
+  forM_ cs $ \c -> putStr $ c ++ "\n\n"
 
 charCounts :: String -> [(Int, Int)]
 charCounts str = scanl (\(index, acc) y -> (index + 1, acc + length y)) (0,0) (words str)

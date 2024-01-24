@@ -1,4 +1,4 @@
-# Changelog for `string-tool`
+# Changelog for `atool`
 
 All notable changes to this project will be documented in this file.
 

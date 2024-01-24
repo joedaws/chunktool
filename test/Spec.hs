@@ -3,7 +3,7 @@ import Lib (chunks)
 
 main :: IO ()
 main = hspec $ do
-  describe "string-tool Lib" $ do
+  describe "atool Lib" $ do
     it "all chunks less than limit" $ do
       -- testing with input value of 10
       let limit = 20

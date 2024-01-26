@@ -1,16 +1,18 @@
 module Lib
     ( threadify,
-      chunks
+      chunks,
+      splitLongWords
     ) where
 
 import Control.Monad
 import System.IO
+import Control.Arrow (Arrow(second))
 
 -- Each component of a thread has at most 280 characters
 threadify :: String -> IO ()
 threadify inputString = do
-  let w = words inputString
-  let c = map unwords $ chunks w [] [] 1 280
+  let validWords = splitLongWords (words inputString) 280
+  let c = map unwords $ chunks validWords [] [] 1 280
   printThreads c
 
 printThreads :: [String] -> IO()
@@ -33,3 +35,16 @@ chunks [] acc currentChunk index _ = acc ++ [[show index ++ "-"] ++ currentChunk
 chunks (x:xs) acc currentChunk index limit
   | length x + (sum $ map length currentChunk) + length currentChunk - 1 + length acc + (length $ show index) + 2 <= limit = chunks xs acc (currentChunk ++ [x]) index limit
   | otherwise = chunks (x:xs) (acc ++ [[show index ++ "-"] ++ currentChunk]) [] (index+1) limit
+
+-- words must have length less than the chunk limit otherwise
+-- chunks will fail
+splitLongWords :: [String] -> Int -> [String]
+splitLongWords ws limit = reverse $ foldl (split limit) [] ws
+
+split :: Int -> [String] -> String -> [String]
+split limit acc w
+      | length w <= limit = w:acc
+      | otherwise = split limit (h:acc) t
+        where (h, t) = splitAt limit w
+
+-- splitWords :: String ->

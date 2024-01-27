@@ -7,5 +7,5 @@ A command line interface (cli) for performing tedious tasks you may not want to 
 ## Chunk String for X (formerly twitter)
 
 ``` sh
-stack exec atool-exe threadify "$(cat hello.txt)"
+stack exec atool threadify "$(cat hello.txt)"
 ```

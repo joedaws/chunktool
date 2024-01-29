@@ -1,6 +1,5 @@
 import Test.Hspec
 import Lib (chunks, splitLongWords)
-import GHC.Real (FractionalExponentBase(Base10))
 
 main :: IO ()
 main = hspec $ do

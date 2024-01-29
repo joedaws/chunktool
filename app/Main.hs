@@ -2,10 +2,10 @@ module Main (main) where
 
 import System.Environment
 
-import Lib (threadify)
+import Lib (threadify')
 
 dispatch :: [(String, String -> IO ())]
-dispatch = [ ("threadify", threadify)]
+dispatch = [ ("threadify", threadify')]
 
 main :: IO ()
 main = do

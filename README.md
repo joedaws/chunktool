@@ -59,6 +59,12 @@ but for me it still takes more concentration than feels worth the cost. Why not 
 (who love strings by the way!) take care of it for us? I think it sounds 2/3
 
 reasonable. 3/3
-```
+``
 
 which you can copy and past into twitter!
+
+**Assumptions**
+
+- all words in the input string are less than 250 characters in length (250 < 280 to leave buffer room)
+
+

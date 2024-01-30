@@ -22,7 +22,7 @@ threadify' inputString = do
       offset     = 2 * length (show chunkGuess) + (length separator)
       validWords = splitLongWords (words inputString) (limit - offset)
       limit      = 280
-      startC     = Chunk [] 1 separator offset
+      startC     = Chunk [] 1 separator chunkGuess
       cll        = Node startC EmptyList
       filledCll  = insertList validWords limit cll
   putStrLn $ toString filledCll

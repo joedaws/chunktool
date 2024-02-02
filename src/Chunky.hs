@@ -1,16 +1,26 @@
-module Chunky
-    ( Chunk
-    , Chunk(..)
-    , ChunkLinkedList
+module Chunky (
+     Chunk(..)
+    , chunkify
     , ChunkLinkedList(..)
     , chunkLength
+    , chunkLengths
     , estimateRequiredChunks
     , fill
     , numChunks
     , renderChunk
+    , RenderMode(..)
     , setDenominatorForAll
     , toString
     ) where
+
+chunkify :: String -> IO ()
+chunkify inputString = do
+  -- TODO handle the case when words are too long
+  let limit        = 280
+      c            = fill inputString limit
+      outputString = toString Indexed c
+  putStrLn outputString
+
 -- defines the separator between index and total
 separator :: [Char]
 separator = "/"
@@ -63,7 +73,9 @@ insertList [] _ cll = cll -- base case
 insertList (w:ws) limit cll = insertList ws limit (insertOne w limit cll)
 
 estimateRequiredChunks :: String -> Int -> Int
-estimateRequiredChunks str limit = strChunks + indexChunks
+estimateRequiredChunks str limit
+  | length str + length "1/1" <= limit = 1
+  | otherwise                          = strChunks + indexChunks
   where
     strChunks = div (length str) limit + 1
     indexContribution = sum $ map length [show i ++ separator ++ show strChunks | i <- [1..strChunks]]
@@ -82,7 +94,8 @@ toIndexedString (Node c next) = renderChunk Indexed c ++ "\n\n" ++ toIndexedStri
 -- render the ChunkLinkedList as a string with no new lines between chunks
 toRawString :: ChunkLinkedList Chunk -> String
 toRawString EmptyList = ""
-toRawString (Node c next) = renderChunk Raw c ++ toRawString next
+toRawString (Node c EmptyList) = renderChunk Raw c
+toRawString (Node c next) = renderChunk Raw c ++ " " ++ toRawString next
 
 toString :: RenderMode -> ChunkLinkedList Chunk -> String
 toString Raw c = toRawString c
@@ -97,11 +110,39 @@ initialChunk inputString limit = Chunk [] 1 separator chunkGuess
 -- initialize the ChunkLinkedList from a string
 -- assume all words are less than limit
 fill :: String -> Int -> ChunkLinkedList Chunk
-fill s limit = insertList (words s) limit initCll
+fill s limit = fixDenominator filled nc
   where
     initC   = initialChunk s limit
     initCll = Node initC EmptyList
+    filled  = insertList (words s) limit initCll
+    nc      = numChunks filled
 
 setDenominatorForAll :: ChunkLinkedList Chunk -> Int -> ChunkLinkedList Chunk
 setDenominatorForAll (Node c EmptyList) newDenominator = Node c {denominator = newDenominator} EmptyList
 setDenominatorForAll (Node c next) newDenominator = Node c {denominator = newDenominator} (setDenominatorForAll next newDenominator)
+
+getDenominator :: ChunkLinkedList Chunk -> Int
+getDenominator EmptyList = 0
+getDenominator (Node c EmptyList) = denominator c
+getDenominator (Node c next) = denominator c
+
+-- For a ChunkList we set the new denominator
+-- when the new denominator has string length
+-- less than or equal the old one, then we simply
+-- update the value (no need to shuffle words).
+-- When the new denominator length is more than
+-- the previous one, we refill the chunk list
+-- with the new denominator and check so see
+-- if the list is still correct.
+fixDenominator :: ChunkLinkedList Chunk -> Int -> ChunkLinkedList Chunk
+fixDenominator cll newDenom
+  | oldDenom == newDenom = cll -- do nothing in this case
+  | oldDenom /= newDenom = if newDenomLength <= oldDenomLength
+                           then setDenominatorForAll cll newDenom
+                           else fixDenominator newCll newNewDenom
+  where
+    newDenomLength = length $ show newDenom
+    oldDenom       = getDenominator cll
+    oldDenomLength = length $ show oldDenom
+    newCll         = fill (toString Raw cll) newDenom
+    newNewDenom    = getDenominator newCll

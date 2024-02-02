@@ -21,9 +21,19 @@ main = hspec $ do
 
   -- TODO updated logic of fill
   describe "atool Chunk" $ do
+    it "Created chunks are valid length" $ do
+      let limit = 30
+          cll = fill text1 limit
+      all (<= limit) (chunkLengths cll) `shouldBe` True
+
     it "Number of chunks equals denominator after fill" $ do
-      let limit           = 20
-          cll@(Node c next) = fill text1 limit
-          nc              = numChunks cll
-          nll@(Node d nnext) = setDenominatorForAll cll nc
-      numChunks nll `shouldBe` denominator d
+      let limit              = 20
+          cll@(Node c _)     = fill text1 limit
+          nc                 = numChunks cll
+      nc `shouldBe` denominator c
+
+    it "toString Raw should be the same as original string" $ do
+      let limit = 20
+          cll   = fill text1 limit
+          str   = toString Raw cll
+      str `shouldBe` text1

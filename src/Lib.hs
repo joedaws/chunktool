@@ -1,3 +1,5 @@
+-- OLD
+-- Keeping this around to see if it still contains good ideas
 module Lib
     ( threadify,
       threadify',

@@ -12,7 +12,7 @@ one has to build it to use it.
 - `cd your-awesome-project-dir/atool`
 - `stack install`
 
-If the installiation goes as planned inspect the message for the location of the 
+If the installation goes as planned inspect the message for the location of the 
 executable `atool`. For me it is `~/.local/bin` which I happened to have already
 added to my `$PATH`. Either append the install location to `PATH` or use it fully
 qualified path.

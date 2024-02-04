@@ -1,5 +1,5 @@
 name:                atool
-version:             0.1.0.0
+version:             0.2.0.0
 github:              "joedaws/atool"
 license:             BSD3 
 author:              "Joe Daws"
@@ -21,7 +21,6 @@ description:         Please see the README on GitHub at <https://github.com/joed
 
 dependencies:
 - base >= 4.7 && < 5
-- hspec
 
 ghc-options:
 - -Wall
@@ -40,7 +39,7 @@ library:
 executables:
   atool:
     main:                Main.hs
-    source-dirs:         app
+    source-dirs:         cli
     ghc-options:
     - -threaded
     - -rtsopts
@@ -58,3 +57,4 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - atool
+    - hspec

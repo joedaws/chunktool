@@ -6,6 +6,7 @@ module Chunky (
     , chunkLengths
     , estimateRequiredChunks
     , fill
+    , getDenominator
     , numChunks
     , renderChunk
     , RenderMode(..)

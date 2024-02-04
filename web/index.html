@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Submission Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Submit a String</h2>
+    <form id="stringForm">
+        <label for="userString">Enter a String:</label><br>
+        <input type="text" id="userString" name="userString" required><br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="resultContainer"></div>
+
+    <script>
+        document.getElementById('stringForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get the user's string input
+            var userString = document.getElementById('userString').value;
+
+            // Modify the string to add a new line
+            var modifiedString = userString + '<br>';
+
+            // Show the modified string under the form
+            document.getElementById('resultContainer').innerHTML = '<h2>Modified String:</h2><p>' + modifiedString + '</p>';
+        });
+    </script>
+</body>
+</html>

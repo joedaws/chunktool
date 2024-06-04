@@ -40,7 +40,7 @@ text2 = "Scene I. On a ship at sea: a tempestuous noise of thunder and lightning
 
 main :: IO ()
 main = hspec $ do
-  describe "atool Lib" $ do
+  describe "chunktool Lib" $ do
     it "Each word is less than limit" $ do
       let limit = 10
       let validWords = splitLongWords (words "aaaaaaaaaaa aaaaaaaaaaaaaa aa a aaaaaaaaaaaaaaaaaaaaa") limit
@@ -52,7 +52,7 @@ main = hspec $ do
       all (<= limit) (map length $ map unwords c) `shouldBe` True
 
   -- TODO updated logic of fill
-  describe "atool Chunk" $ do
+  describe "chunktool Chunk" $ do
     it "Created chunks are valid length" $ do
       let limit = 30
           cll = fill text1 limit

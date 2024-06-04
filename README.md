@@ -1,4 +1,4 @@
-# atool
+# chunktool
 
 A command line interface (cli) for performing tedious tasks you may not want to do manually.
 
@@ -9,11 +9,11 @@ one has to build it to use it.
 
 - Install [`ghcup`](https://www.haskell.org/ghcup/install/)
 - clone this repo to your favorite projects directory
-- `cd your-awesome-project-dir/atool`
+- `cd your-awesome-project-dir/chunktool`
 - `stack install`
 
 If the installation goes as planned inspect the message for the location of the 
-executable `atool`. For me it is `~/.local/bin` which I happened to have already
+executable `chunktool`. For me it is `~/.local/bin` which I happened to have already
 added to my `$PATH`. Either append the install location to `PATH` or use it fully
 qualified path.
 
@@ -23,15 +23,15 @@ qualified path.
 
 When an idea that takes more than 280 characters to render comes into your head,
 you may choose to share it with the world by posting on X. The `threadify` function
-of `atool` takes your long string and converts it to a sequence of chunks
+of `chunktool` takes your long string and converts it to a sequence of chunks
 each of which is under the 280 character limit and each of which has 
 an index like `(3/10)`.
 
 Take your idea and put it into a file or type it straight into your terminal.
-Then invoke `atool threadify` like
+Then invoke `chunktool threadify` like
 
 ``` sh
-atool threadify "$(cat hello.txt)"
+chunktool threadify "$(cat hello.txt)"
 ```
 
 > Note: If you get a command ntoe found error see comments in Building Section of this README

@@ -1,6 +1,6 @@
 # chunktool
 
-A command line interface (cli) for performing tedious tasks you may not want to do manually.
+A command line interface (cli) for breaking up strings into chunks.
 
 # Building
 

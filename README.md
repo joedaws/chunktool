@@ -31,7 +31,7 @@ Take your idea and put it into a file or type it straight into your terminal.
 Then invoke `chunktool threadify` like
 
 ``` sh
-chunktool threadify "$(cat hello.txt)"
+chunktool threadify "$(cat docs/hello.txt)"
 ```
 
 > Note: If you get a command ntoe found error see comments in Building Section of this README

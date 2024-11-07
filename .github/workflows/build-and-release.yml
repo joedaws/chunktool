@@ -20,7 +20,6 @@ jobs:
         uses: actions/setup-haskell@v1
         with:
           stack-version: '3.1.1'
-          ghc-version: '9.4.8'
 
       - name: Install dependencies
         run: stack setup

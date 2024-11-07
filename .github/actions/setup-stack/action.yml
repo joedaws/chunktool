@@ -1,0 +1,16 @@
+name: "Setup Haskell Stack"
+description: "Sets up Haskell Stack with a specified GHC version"
+inputs:
+  ghc-version:
+    description: "The GHC version to install"
+    required: true
+    default: "8.10.7"
+runs:
+  using: "composite"
+  steps:
+    - name: Install Stack and GHC
+      shell: bash
+      run: ./install-stack.sh ${{ inputs.ghc-version }}
+files:
+  - install-stack.sh
+

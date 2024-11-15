@@ -46,7 +46,7 @@ jobs:
           HOME: ${{ runner.temp }}
     
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: chunktool-${{ matrix.os }}
           path: dist/
@@ -62,16 +62,14 @@ jobs:
 
     steps:
       - name: Download built artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: chunktool-${{ matrix.os }}
-
-      - name: List files in dist
-        run: ls -l dist
 
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
-          files: dist/*
+          files: /home/runner/work/chunktool/chunktool
+          name: chunktool-${{ github.ref_name }}-${{ matrix.os }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -3,7 +3,7 @@ name: Build and Release
 on:
   push:
     tags:
-      - 'v*.*.*'  # Trigger on version tags (e.g., v1.0.0)
+      - 'v*.*.*.*'  # Trigger on version tags (e.g., v1.0.0)
 
 jobs:
   build:
@@ -17,9 +17,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Haskell Stack
-        uses: ./.github/actions/setup-stack  # Use the custom Stack setup action
+        uses: actions/setup-haskell@v1.1
         with:
-          ghc-version: '8.10.7'  # Specify the GHC version you want to install
+          ghc-version: '9.4'  # chose compatible with stack env
+          cabal-version: '3.12' # chose compatible with stack env
 
       - name: Build executable
         run: stack build --copy-bins

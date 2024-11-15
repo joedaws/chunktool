@@ -65,11 +65,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: chunktool-${{ matrix.os }}
+          path: chunkt
 
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
-          files: /home/runner/work/chunktool/chunktool
+          files: chunkt
           name: chunktool-${{ github.ref_name }}-${{ matrix.os }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

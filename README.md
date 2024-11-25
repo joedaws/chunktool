@@ -17,24 +17,28 @@ executable `chunktool`. For me it is `~/.local/bin` which I happened to have alr
 added to my `$PATH`. Either append the install location to `PATH` or use it fully
 qualified path.
 
+> Note: If you get a command not found error see comments in Building Section of this README
+
 # Usage
 
-## Chunk String for X (formerly twitter)
-
-When an idea that takes more than 280 characters to render comes into your head,
-you may choose to share it with the world by posting on X. The `threadify` function
-of `chunktool` takes your long string and converts it to a sequence of chunks
-each of which is under the 280 character limit and each of which has 
-an index like `(3/10)`.
+The platforms =x= and =bsky= are built for short posts. If your idea is longer than 
+the character limit of the platform you want to post on you want want to chunk
+the string into numbered functions. `chunktool` takes your long string and converts 
+it to a sequence of chunks each of which is under the character limit 
+of your desired platform. Each resulting post will include an index like `3/10`.
 
 Take your idea and put it into a file or type it straight into your terminal.
-Then invoke `chunktool threadify` like
+Then invoke `chunktool {platform-name}` like
 
 ``` sh
-chunktool threadify "$(cat docs/hello.txt)"
+chunktool bsky "How now brown cow?"
 ```
 
-> Note: If you get a command ntoe found error see comments in Building Section of this README
+You can also forward text from a file like
+
+``` sh
+chunktool x "$(cat docs/hello.txt)"
+```
 
 For example, the string
 
@@ -61,7 +65,7 @@ but for me it still takes more concentration than feels worth the cost. Why not 
 reasonable. 3/3
 ```
 
-which you can copy and past into twitter!
+which you can copy and past into your desired platform.
 
 **Assumptions**
 

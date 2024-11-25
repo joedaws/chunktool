@@ -5,7 +5,9 @@ import System.Environment
 import Chunky (chunkify)
 
 dispatch :: [(String, String -> IO ())]
-dispatch = [ ("threadify", chunkify)]
+dispatch = [
+  ("x", chunkify 280),
+  ("bsky", chunkify 300)]
 
 main :: IO ()
 main = do

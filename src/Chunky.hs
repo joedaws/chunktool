@@ -14,10 +14,10 @@ module Chunky (
     , toString
     ) where
 
-chunkify :: String -> IO ()
-chunkify inputString = do
+chunkify :: Int -> String -> IO ()
+chunkify n inputString = do
   -- TODO handle the case when words are too long
-  let limit        = 280
+  let limit        = n
       c            = fill inputString limit
       outputString = toString Indexed c
   putStrLn outputString

@@ -1,5 +1,4 @@
 import Test.Hspec
-import Lib (chunks, splitLongWords)
 import Chunky
 
 text1 :: String
@@ -38,20 +37,28 @@ text2 = "Scene I. On a ship at sea: a tempestuous noise of thunder and lightning
         \ make the rope of his destiny our cable, for our own doth 30 little advantage.\
         \ If he be not born to be hanged, our case is miserable."
 
+text3 :: String
+text3 = "Time is at a premium and condensing or filtering information seem to be natural approaches to consume more. " ++
+        "In our current environment this approach may be attractive (or at least I feel a pull in this direction " ++
+        "sometimes) so that we feel we are maintaining a productive stance despite the ever increasing deluge of " ++
+        "information. It's natural I think that I turn to technology to help me out. In particular, LLMs seem well " ++
+        "suited to performing summarization of text. However, just because a well formed summary can be created for " ++
+        "any information these days, we need to be judicious about where we expect summaries to provide value to " ++
+        "people and businesses.\n\n" ++
+        "Suppose that I wanted to read a James Joyce novel. I might be intimidated by the length or density of the " ++
+        "work (I'm a bit ashamed but this is true). A dark pattern would be to simply consume the summary. Facts " ++
+        "have been conveyed and consumed by me having read the summary. However, the value of the work doesn't lie " ++
+        "in the facts but in the process of consuming the work in the first place. Then I'm compelled to read the " ++
+        "work directly. Upon starting I may find the novel totally inaccessible to me, \"I can't follow the narrative " ++
+        "structure, I don't understand these references!\" I think a good path forward is to use the LLM in conjunction " ++
+        "with the original material. Similar to how I use a dictionary app when reading on e-ink devices to define " ++
+        "words that are unfamiliar to me. A similar strategy may work for dense works of literature (though there is " ++
+        "always a danger of getting derailed while reading the meaning of each aside).\n\n" ++
+        "There are surely other instances of use-cases of LLMs where the technology can be used to enhance the " ++
+        "consumption of existing text while not totally removing the necessity and complexity of the source text."
+
 main :: IO ()
 main = hspec $ do
-  describe "chunktool Lib" $ do
-    it "Each word is less than limit" $ do
-      let limit = 10
-      let validWords = splitLongWords (words "aaaaaaaaaaa aaaaaaaaaaaaaa aa a aaaaaaaaaaaaaaaaaaaaa") limit
-      all (<= limit) (map length validWords) `shouldBe` True
-    it "Created chunks less than limit" $ do
-      -- testing with input value of 10
-      let limit = 20
-      let c = chunks (words "This is only a test of the functionality of string tool") [] [] 1 limit
-      all (<= limit) (map length $ map unwords c) `shouldBe` True
-
-  -- TODO updated logic of fill
   describe "chunktool Chunk" $ do
     it "Created chunks are valid length" $ do
       let limit = 30
@@ -69,3 +76,9 @@ main = hspec $ do
           cll   = fill text1 limit
           str   = toString Raw cll
       str `shouldBe` text1
+
+    it "Complex example test fill"
+      let limit = 300
+          cll   = fill text3 limit
+          str   = toString Raw cll
+      all (<= limit) (map length $ map unwords c) `shouldBe` True

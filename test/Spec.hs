@@ -77,8 +77,8 @@ main = hspec $ do
           str   = toString Raw cll
       str `shouldBe` text1
 
-    it "Complex example test fill"
-      let limit = 300
-          cll   = fill text3 limit
-          str   = toString Raw cll
-      all (<= limit) (map length $ map unwords c) `shouldBe` True
+    it "Complex example test fill" $ do
+      let limit  = 300
+          cll    = fill text3 limit
+          chunks = toList cll
+      all (<= limit) (map length $ map (renderChunk Indexed) chunks) `shouldBe` True

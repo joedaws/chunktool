@@ -11,6 +11,7 @@ module Chunky (
     , renderChunk
     , RenderMode(..)
     , setDenominatorForAll
+    , toList
     , toString
     ) where
 
@@ -101,6 +102,10 @@ toRawString (Node c next) = renderChunk Raw c ++ " " ++ toRawString next
 toString :: RenderMode -> ChunkLinkedList Chunk -> String
 toString Raw c = toRawString c
 toString Indexed c = toIndexedString c
+
+toList :: ChunkLinkedList a -> [a]
+toList EmptyList = []
+toList (Node x y) = x : toList y
 
 -- a Chunk to start with
 initialChunk :: String -> Int -> Chunk

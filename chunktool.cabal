@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           chunktool
-version:        0.3.0.14
+version:        0.4.0.0
 description:    Please see the README on GitHub at <https://github.com/joedaws/chunktool#readme>
 homepage:       https://github.com/joedaws/chunktool#readme
 bug-reports:    https://github.com/joedaws/chunktool/issues
@@ -26,7 +26,6 @@ source-repository head
 library
   exposed-modules:
       Chunky
-      Lib
   other-modules:
       Paths_chunktool
   hs-source-dirs:

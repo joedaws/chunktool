@@ -54,6 +54,7 @@ test-suite chunktool-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      ChunkySpec
       Paths_chunktool
   hs-source-dirs:
       test

@@ -22,7 +22,7 @@ coloredPutStrLn color msg = do
 
 help :: IO ()
 help = do
-  putStrLn "Usage: myprog [command] [argument]"
+  putStrLn "Usage: chunktool [command] [argument]"
   putStrLn "The following commands are available:"
 
   coloredPutStrLn Green "  x"

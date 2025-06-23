@@ -1,6 +1,15 @@
-# chunktool
+# social-print
 
-A command line interface (cli) for breaking up strings into chunks.
+I love composing text in `txt` and `md` files but copying 
+and pasting such text into web forms is frustrating because
+I use so many new lines in the file that shouldn't be respected
+when copying text into a web form.
+
+This repository contains the code for `social-print`, a command 
+line interface (cli) for rendering your text stored in 
+txt files so that you can copy and paste it into the post form
+on social media sites. The executable built by this repo is
+`sprint`.
 
 # Building
 
@@ -9,11 +18,11 @@ one has to build it to use it.
 
 - Install [`ghcup`](https://www.haskell.org/ghcup/install/)
 - clone this repo to your favorite projects directory
-- `cd your-awesome-project-dir/chunktool`
+- `cd your-awesome-project-dir/social-print`
 - `stack install`
 
 If the installation goes as planned inspect the message for the location of the 
-executable `chunktool`. For me it is `~/.local/bin` which I happened to have already
+executable `sprint`. For me it is `~/.local/bin` which I happened to have already
 added to my `$PATH`. Either append the install location to `PATH` or use it fully
 qualified path.
 
@@ -21,23 +30,25 @@ qualified path.
 
 # Usage
 
-The platforms =x= and =bsky= are built for short posts. If your idea is longer than 
+## Microblogging
+
+The platforms `x` and `bsky` are built for short posts. If your idea is longer than 
 the character limit of the platform you want to post on you want want to chunk
-the string into numbered functions. `chunktool` takes your long string and converts 
+the string into numbered functions. `social-print` takes your long string and converts 
 it to a sequence of chunks each of which is under the character limit 
 of your desired platform. Each resulting post will include an index like `3/10`.
 
 Take your idea and put it into a file or type it straight into your terminal.
-Then invoke `chunktool {platform-name}` like
+Then invoke `sprint {platform-name}` like
 
 ``` sh
-chunktool bsky "How now brown cow?"
+sprint bsky "How now brown cow?"
 ```
 
 You can also forward text from a file like
 
 ``` sh
-chunktool x "$(cat docs/hello.txt)"
+sprint x "$(cat docs/hello.txt)"
 ```
 
 For example, the string

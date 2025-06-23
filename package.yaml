@@ -1,6 +1,6 @@
-name:                chunktool
-version:             0.4.0.0
-github:              "joedaws/chunktool"
+name:                social-print
+version:             0.5.0.0
+github:              "joedaws/social-print"
 license:             BSD3 
 author:              "Joseph Daws Jr."
 maintainer:          "daws.joseph@gmail.com"
@@ -17,7 +17,7 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/joedaws/chunktool#readme>
+description:         Please see the README on GitHub at <https://github.com/joedaws/social-print#readme>
 
 dependencies:
 - base >= 4.7 && < 5
@@ -38,7 +38,7 @@ library:
   source-dirs: src
 
 executables:
-  chunktool:
+  sprint:
     main:                Main.hs
     source-dirs:         cli
     ghc-options:
@@ -46,10 +46,10 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - chunktool
+    - social-print
 
 tests:
-  chunktool-test:
+  social-print-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:
@@ -57,5 +57,5 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - chunktool
+    - social-print
     - hspec

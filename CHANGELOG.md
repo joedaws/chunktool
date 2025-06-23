@@ -1,4 +1,4 @@
-# Changelog for `chunktool`
+# Changelog for `social-print`
 
 All notable changes to this project will be documented in this file.
 
@@ -8,6 +8,10 @@ and this project adheres to the
 
 ## Unreleased
 
+## 0.2.0.0 - 2025-06-22
+
+- renamed to social-print
+
 ## 0.1.0.0 - 2024-01-16
 
-- adding threadify to help with chunking text you want to tweet.
+- added threadify to help with chunking text you want to tweet.
